@@ -8,6 +8,7 @@ TagManager:
   - MoveDate
   - Block
   - Door
+  - Platform
   layers:
   - Default
   - TransparentFX

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class CollisionResponse : MonoBehaviour
 {
+    // Declare Objects
     public GameObject block;
     public GameObject player;
+    public GameObject wall;
     //[SerializeField] Transform spawnPoint;
     public Transform spawnPoint;
     public bool teleported = false;
@@ -21,10 +23,18 @@ public class CollisionResponse : MonoBehaviour
 
     void HitPlayer()
     {
-        Debug.Log("hittttt");
-        //this.GetComponent<Rigidbody>().AddForce(0, 0, 1000);
-        player.transform.position = spawnPoint.position;
-        Debug.Log(transform.position);
-        //fgf
+        // Call/identify PlayerCapsule's Character Controller
+        CharacterController cc = player.GetComponent<CharacterController>();
+        // Disable PlayerCapsule's Character Controller
+        cc.enabled = false;
+        // Move PlayerCapsule
+        player.transform.position = spawnPoint.transform.position;
+        // Re-enable PlayerCapsule's Character Controller
+        cc.enabled = true;
+
+        // Activate Block Wall
+        wall.SetActive(true);
     }
+
+    
 }

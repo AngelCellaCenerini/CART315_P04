@@ -4,11 +4,25 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour
 {
-    Animator animator;
+    
     int openedHash;
-    // To measure distance
+    // Declare Objects
+    Animator animator;
+    public GameObject fridge;
+    public GameObject fridgeDoor;
+    public GameObject instructions;
+    // Declare Materials
+    public Material originalMaterial;
+    public Material temporaryMaterial;
+
+    // Measure distance
     public Transform PlayerCamera;
-    public float MaxDistance = 5;
+    public float MaxDistance = 8;
+
+    // Bools
+    //public bool isGlowing = false;
+    public bool doorIsOpened = false;
+    public bool instructionsOn;
 
 
 
@@ -23,35 +37,67 @@ public class OpenDoor : MonoBehaviour
     void FixedUpdate()
     {
         // Check PLayer Input
-        //bool opened = animator.GetBool("Opened");
         bool opened = animator.GetBool(openedHash);
-        bool openDoor = Input.GetKeyDown("r");
-        bool closeDoor = Input.GetKeyUp("r");
+        bool openDoor = Input.GetKey("r");
 
         float distance = Vector3.Distance(PlayerCamera.transform.position, this.transform.position);
 
 
         if(distance < MaxDistance)
         {
-            // Player is pressing "F" 
+            // Change Material to Glow-y one
+            //isGlowing = true;
+            //Debug.Log("true - distance <");
+            if (instructionsOn)
+            {
+                instructions.SetActive(true);
+            }
+            
+
+
+            // Player is pressing "R" 
             if (openDoor)
             {
                 animator.SetBool(openedHash, true);
+                doorIsOpened = true;
+                // Restore Original Material 
+                //isGlowing = false;
+                //Debug.Log("false - distance < but R"); 
+                instructionsOn = false;
+                
             }
-            // Player is not pressing "F"
-            /* if (closeDoor && opened)
-            {
-                animator.SetBool(openedHash, false);
-            }*/
         }
+
         if (distance > MaxDistance)
+        // Player walks away from fridge
         {
-            // Player is not pressing "F"
+            // Restore Original Material 
+            //isGlowing = false;
+            //Debug.Log("false - distance >");
+            //instructionsOn = true;
+            instructions.SetActive(false);
+
+            // Fridge Door closes automatically
             if (opened)
             {
                 animator.SetBool(openedHash, false);
+                doorIsOpened = false;
             }
         }
+
+        // Manage Material
+        /*if (isGlowing)
+        {
+            // Change Material to Glow-y one
+            fridge.GetComponent<MeshRenderer>().material = temporaryMaterial;
+            fridgeDoor.GetComponent<MeshRenderer>().material = temporaryMaterial;
+        }
+        else if(!isGlowing)
+        {
+            // Restore Original Material
+            fridge.GetComponent<MeshRenderer>().material = originalMaterial;
+            fridgeDoor.GetComponent<MeshRenderer>().material = originalMaterial;
+        }*/
        
     }
-        }
+}

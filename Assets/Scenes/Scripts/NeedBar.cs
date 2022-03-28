@@ -9,11 +9,13 @@ public class NeedBar : MonoBehaviour
 {
     private Slider slider;
     public float emptySpeed = - 0.05f;
+    public float fillSpeed = 0.05f;
     private float targetProgress = 0;
+    private float targetProgressComplete = 1;
     // public GameObject FinalScene;
     // public GameObject Spawining;
 
-    // public Type bS;
+    public Interact bS;
 
     private void Awake()
     {
@@ -22,31 +24,42 @@ public class NeedBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DecreaseProgress(1.0f);
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-            if (slider.value > targetProgress)
+        ManageProgress(1.0f);
+
+        if (bS.isInteracting) 
             {
-                // if (bS.typing)
-                // {
-                    slider.value += emptySpeed * Time.deltaTime;
-                // }
+            if (slider.value < targetProgressComplete)
+                {
+                    slider.value += fillSpeed * Time.deltaTime;
+                }
+                   
             }
-            /* else
+            else if(!bS.isInteracting)
             {
-                // Debug.Log("complete");
-                // Activate "Final Fan" and Golden Lighting & Deactivate Obstacles
-                // FinalScene.SetActive(true);
-                // Spawining.SetActive(false);
-            }*/
+            if (slider.value < targetProgress)
+                {
+                    slider.value += emptySpeed * Time.deltaTime;
+                }
+            }
+        }
 
-    }
-
-    public void DecreaseProgress(float newProgress)
+    public void ManageProgress(float newProgress)
     {
-        targetProgress = slider.value - newProgress;
+        if (bS.isInteracting)
+        {
+            targetProgressComplete = slider.value + newProgress;
+            
+        }
+        else if(!bS.isInteracting)
+        {
+            targetProgress = slider.value + newProgress;
+        }
+        
     }
 }

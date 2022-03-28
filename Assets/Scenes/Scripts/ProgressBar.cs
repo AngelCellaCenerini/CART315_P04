@@ -12,6 +12,7 @@ public class ProgressBar : MonoBehaviour
     private float targetProgress = 0;
     public GameObject FinalScene;
     public GameObject Spawining;
+    public GameObject seats;
 
     public Type bS;
 
@@ -43,10 +44,20 @@ public class ProgressBar : MonoBehaviour
                 Spawining.SetActive(false);
             }
 
+        CheckPreogress();
+
     }
 
     public void IncrementProgress(float newProgress)
     {
         targetProgress = slider.value + newProgress;
+    }
+
+    public void CheckPreogress()
+    {
+        if (slider.value > 0.7f)
+        {
+            seats.SetActive(true);
+        }
     }
 }

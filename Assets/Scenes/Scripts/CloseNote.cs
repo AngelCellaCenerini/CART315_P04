@@ -10,6 +10,9 @@ public class CloseNote : MonoBehaviour
     public float MaxDistance = 3;
     public Transform PlayerCamera;
 
+    // Bools
+    public ReadNote bS;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +24,7 @@ public class CloseNote : MonoBehaviour
     {
         float distance = Vector3.Distance(PlayerCamera.transform.position, this.transform.position);
 
-        if (Input.GetKeyDown(KeyCode.E))
+        /*if (Input.GetKeyDown(KeyCode.E))
         {
             //if (distance > 5 * MaxDistance)
             //{
@@ -40,7 +43,23 @@ public class CloseNote : MonoBehaviour
             note.SetActive(true);
             instructions.SetActive(true);
             noteCloseUp.SetActive(false);
-        }
-    }
+        }*/
+
+        //if (distance < MaxDistance)
+        //{
+            if (!note.activeSelf && !instructions.activeSelf && noteCloseUp.activeSelf)
+            {
+                if (Input.GetKey(KeyCode.E))
+                {
+
+                Debug.Log("closed");
+                    note.SetActive(true);
+                    instructions.SetActive(true);
+                    noteCloseUp.SetActive(false);
+                }
+
+            }
+        //}
+      }
 
         }

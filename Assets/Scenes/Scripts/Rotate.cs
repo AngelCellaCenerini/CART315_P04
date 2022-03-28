@@ -5,7 +5,9 @@ using UnityEngine;
 public class Rotate : MonoBehaviour
 {
 
-    public float rotationSpeed = 0.1f;
+    public float rotationSpeedX = 0.1f;
+    public float rotationSpeedY = 0.1f;
+    public float rotationSpeedZ = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,6 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        this.GetComponent<Transform>().Rotate(rotationSpeed, 0, rotationSpeed);
+        this.GetComponent<Transform>().Rotate(rotationSpeedX, rotationSpeedY, rotationSpeedZ);
     }
 }
