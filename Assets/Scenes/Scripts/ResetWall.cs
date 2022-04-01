@@ -6,17 +6,19 @@ using UnityEngine;
 
 public class ResetWall : MonoBehaviour
 {
-    public float timeRemaining = 4;
+    public float timeRemaining = 0;
     public bool timerIsRunning = false;
 
     // Objects
-    public GameObject wall;
+    public GameObject blankRoom;
+    public GameObject player;
+    public Transform spawnPoint;
 
     // Start is called before the first frame update
     void Start()
     {
         // Starts the timer automatically
-        if (wall.activeSelf)
+        if (blankRoom.activeSelf)
         {
             timerIsRunning = true;
         }
@@ -26,17 +28,32 @@ public class ResetWall : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (timerIsRunning)
+        if (timerIsRunning && blankRoom.activeSelf)
         {
-            if (timeRemaining > 0)
+            timeRemaining += Time.deltaTime;
+
+            // Mute Volume
+            AudioListener.volume = 0f;
+
+            if (timeRemaining > 10f)
             {
-                timeRemaining -= Time.deltaTime;
-            }
-            else
-            {
-                wall.SetActive(false);
+                // Teleport PlayerCapsule
+                // Call/identify PlayerCapsule's Character Controller
+                CharacterController cc = player.GetComponent<CharacterController>();
+                // Disable PlayerCapsule's Character Controller
+                cc.enabled = false;
+                // Move PlayerCapsule
+                player.transform.position = spawnPoint.transform.position;
+                // Re-enable PlayerCapsule's Character Controller
+                cc.enabled = true;
+
+                // Reset Timer & Blank Room
                 timeRemaining = 0;
-                timerIsRunning = false;
+                //timerIsRunning = false;
+                blankRoom.SetActive(false);
+
+                // Reset Volume
+                AudioListener.volume = 1f;
             }
         }
     }

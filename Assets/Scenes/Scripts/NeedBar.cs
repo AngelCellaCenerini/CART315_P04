@@ -14,6 +14,8 @@ public class NeedBar : MonoBehaviour
     private float targetProgressComplete = 1;
     // public GameObject FinalScene;
     // public GameObject Spawining;
+    // Objects
+    public GameObject message;
 
     public Interact bS;
 
@@ -47,6 +49,12 @@ public class NeedBar : MonoBehaviour
                     slider.value += emptySpeed * Time.deltaTime;
                 }
             }
+
+        if (slider.value == 0)
+        {
+            // Display Message
+            message.SetActive(true);
+        }
         }
 
     public void ManageProgress(float newProgress)

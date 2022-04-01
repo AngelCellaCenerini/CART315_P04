@@ -5,7 +5,7 @@ using UnityEngine;
 public class ReadNote : MonoBehaviour
 {
     public GameObject noteCloseUp;
-    public GameObject instructions;
+    // public GameObject instructions;
     public GameObject note;
     public float MaxDistance = 5;
     public Transform PlayerCamera;
@@ -78,7 +78,7 @@ public class ReadNote : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 note.SetActive(false);
-                instructions.SetActive(false);
+                // instructions.SetActive(false);
                 noteCloseUp.SetActive(true);
                 isOpened = true;
             }
@@ -91,7 +91,7 @@ public class ReadNote : MonoBehaviour
             if (isOpened)
             {
                 note.SetActive(true);
-                instructions.SetActive(true);
+                // instructions.SetActive(true);
                 noteCloseUp.SetActive(false);
                 isOpened = false;
             }

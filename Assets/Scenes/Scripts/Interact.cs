@@ -17,6 +17,7 @@ public class Interact : MonoBehaviour
     public bool isGlowing;
     public bool isInteracting;
     public bool isBottle;
+    public bool isPhone;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +59,11 @@ public class Interact : MonoBehaviour
                     bottleLabel.SetActive(false);
                     targetObject.SetActive(false);
                 }
+                // For Phone Object
+                if (isPhone)
+                {
+                    targetObject.SetActive(false);
+                }
                 // Track Interaction
                 isInteracting = true;
             }
@@ -68,6 +74,11 @@ public class Interact : MonoBehaviour
                 if (isBottle && !isGlowing)
                 {
                     bottleLabel.SetActive(true);
+                    targetObject.SetActive(true);
+                }
+                // For Phone Object
+                if (isPhone)
+                {
                     targetObject.SetActive(true);
                 }
             }

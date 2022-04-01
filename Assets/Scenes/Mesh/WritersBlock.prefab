@@ -719,7 +719,7 @@ RectTransform:
   m_GameObject: {fileID: 6622187156775348242}
   m_LocalRotation: {x: -0.09210026, y: -0.23390146, z: -0.3546122, w: 0.90058756}
   m_LocalPosition: {x: 0, y: 0, z: 0.06920695}
-  m_LocalScale: {x: 1.4329, y: 1.4329, z: 1.4329}
+  m_LocalScale: {x: 2.2523217, y: 2.2523217, z: 2.2523217}
   m_Children:
   - {fileID: 6622187156979167738}
   - {fileID: 8925008427640492134}
@@ -795,8 +795,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7835915, y: 1.8244572, z: 1.6753438}
-  m_Center: {x: 0.09221189, y: 0.037173513, z: -0.04809832}
+  m_Size: {x: 1.2811568, y: 1.3827951, z: 1.577332}
+  m_Center: {x: -0.04783643, y: -0.009124375, z: -0.09710433}
 --- !u!222 &6622187156775348246
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -833,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803f35d20e352094492d71890cd735d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 15
+  timeRemaining: 6
   timerIsRunning: 0
 --- !u!1 &6622187156979167719
 GameObject:

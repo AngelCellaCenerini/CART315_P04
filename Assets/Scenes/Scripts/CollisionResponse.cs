@@ -7,10 +7,12 @@ public class CollisionResponse : MonoBehaviour
     // Declare Objects
     public GameObject block;
     public GameObject player;
-    public GameObject wall;
+    public GameObject blankRoom;
     //[SerializeField] Transform spawnPoint;
     public Transform spawnPoint;
     public bool teleported = false;
+    // Wall's class
+    public ResetWall bS;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -33,7 +35,7 @@ public class CollisionResponse : MonoBehaviour
         cc.enabled = true;
 
         // Activate Block Wall
-        wall.SetActive(true);
+        blankRoom.SetActive(true);
     }
 
     
