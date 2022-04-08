@@ -18,12 +18,22 @@ public class Interact : MonoBehaviour
     public bool isInteracting;
     public bool isBottle;
     public bool isPhone;
+    // Declare Other Class
+    public OpenDoor bS;
+    // Sound Effect
+    [SerializeField]
+    private AudioClip doorLockSFX;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Set Up starting Bools
         isGlowing = true;
         isInteracting = false;
+        // Set Up SFX
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = doorLockSFX;
     }
 
     // Update is called once per frame
@@ -64,18 +74,21 @@ public class Interact : MonoBehaviour
                 {
                     targetObject.SetActive(false);
                 }
+
                 // Track Interaction
                 isInteracting = true;
+                // Play SFX
+                audioSource.Play();
             }
             else{
                 // Track Interaction
-                isInteracting = false;
+                //isInteracting = false;
                 // For Bottle Object
-                if (isBottle && !isGlowing)
+                /*if (isBottle && !isGlowing)
                 {
                     bottleLabel.SetActive(true);
                     targetObject.SetActive(true);
-                }
+                }*/
                 // For Phone Object
                 if (isPhone)
                 {
@@ -85,12 +98,21 @@ public class Interact : MonoBehaviour
         }
         else
         {
+            // Track Interaction
+            isInteracting = false;
             // Change Material to Original one
             targetObject.GetComponent<MeshRenderer>().material = originalMaterial;
             // For Bottle Object
             if (isBottle)
             {
-                bottleLabel.SetActive(true);
+                // Check Fridge Door
+                if (distance >= MaxDistance * 2.8)
+                {
+                    // Reset Bottle Object
+                    targetObject.SetActive(true);
+                    bottleLabel.SetActive(true);
+                }
+
             }
             // Reset Glowing 
             isGlowing = true;

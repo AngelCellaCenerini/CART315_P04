@@ -74,7 +74,7 @@ public class OpenDoor : MonoBehaviour
             // Restore Original Material 
             //isGlowing = false;
             //Debug.Log("false - distance >");
-            //instructionsOn = true;
+            instructionsOn = true;
             instructions.SetActive(false);
 
             // Fridge Door closes automatically
@@ -84,20 +84,5 @@ public class OpenDoor : MonoBehaviour
                 doorIsOpened = false;
             }
         }
-
-        // Manage Material
-        /*if (isGlowing)
-        {
-            // Change Material to Glow-y one
-            fridge.GetComponent<MeshRenderer>().material = temporaryMaterial;
-            fridgeDoor.GetComponent<MeshRenderer>().material = temporaryMaterial;
-        }
-        else if(!isGlowing)
-        {
-            // Restore Original Material
-            fridge.GetComponent<MeshRenderer>().material = originalMaterial;
-            fridgeDoor.GetComponent<MeshRenderer>().material = originalMaterial;
-        }*/
-       
     }
 }

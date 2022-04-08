@@ -35,7 +35,7 @@ public class ResetWall : MonoBehaviour
             // Mute Volume
             AudioListener.volume = 0f;
 
-            if (timeRemaining > 10f)
+            if (timeRemaining > 12f)
             {
                 // Teleport PlayerCapsule
                 // Call/identify PlayerCapsule's Character Controller

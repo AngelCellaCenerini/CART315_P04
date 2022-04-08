@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // source code: https://youtu.be/UCAo-uyb94c
 
 public class NeedBar : MonoBehaviour
 {
-    private Slider slider;
+    public Slider slider;
     public float emptySpeed = - 0.05f;
     public float fillSpeed = 0.05f;
     private float targetProgress = 0;
@@ -15,7 +16,8 @@ public class NeedBar : MonoBehaviour
     // public GameObject FinalScene;
     // public GameObject Spawining;
     // Objects
-    public GameObject message;
+    //public GameObject message;
+    public bool isOver;
 
     public Interact bS;
 
@@ -50,12 +52,11 @@ public class NeedBar : MonoBehaviour
                 }
             }
 
-        if (slider.value == 0)
+        if (slider.value >= 1.0f)
         {
-            // Display Message
-            message.SetActive(true);
+            bS.isInteracting = false;
         }
-        }
+    }
 
     public void ManageProgress(float newProgress)
     {
@@ -69,5 +70,13 @@ public class NeedBar : MonoBehaviour
             targetProgress = slider.value + newProgress;
         }
         
+    }
+
+    public void changeScene(string sceneName)
+    {
+        if (slider.value <= 0.0f)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }
